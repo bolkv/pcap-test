@@ -66,7 +66,7 @@ void print_ethernet_info(const u_char* packet){
 	struct libnet_ethernet_hdr*  ethernet_hdr = ( struct libnet_ethernet_hdr*)packet;
 	printf("Source Mac Address: ");
 	print_mac(ethernet_hdr->ether_shost);
-	printf("Destinatation Mac Address: ");
+	printf("Destination Mac Address: ");
 	print_mac(ethernet_hdr->ether_dhost);
 	printf("\n");
 }
@@ -91,7 +91,7 @@ void print_ipv4_info(const u_char* packet){
 void print_tcp_info(const u_char* packet){
 	printf("TCP Header\n");
 	struct libnet_tcp_hdr* tcp_hdr = (struct libnet_tcp_hdr*)packet;
-	printf("Source Port: %u\n ",ntohs(tcp_hdr->th_sport));
+	printf("Source Port: %u\n",ntohs(tcp_hdr->th_sport));
 	printf("Destination Port: %u\n",ntohs(tcp_hdr->th_dport));
 	printf("\n");
 }
@@ -100,7 +100,7 @@ void print_data(const u_char* packet){
 	printf("DATA\n");
 	packet += sizeof(struct libnet_tcp_hdr);
 	for(int i=0;i<20;i++){
-		printf("%02x",packet[i]);
+		printf("%02x ",packet[i]);
 	}
 	printf("\n");
 
